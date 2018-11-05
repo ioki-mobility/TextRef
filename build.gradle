@@ -1,20 +1,30 @@
 buildscript {
     ext.kotlin_version = '1.2.71'
     repositories {
+        mavenCentral()
         google()
         jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'pl.allegro.tech.build:axion-release-plugin:1.9.3'
+    }
+}
+
+apply plugin: "pl.allegro.tech.build.axion-release"
+
+scmVersion {
+    tag {
+        prefix = ""
     }
 }
 
 allprojects {
     repositories {
+        mavenCentral()
         google()
         jcenter()
-        mavenCentral()
     }
 }
 

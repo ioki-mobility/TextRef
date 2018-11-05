@@ -1,5 +1,7 @@
 # TextRef
 
+TODO Badges!
+
 ## What?
 
 TextRef is an abstraction over Android strings. It wraps a String or a string resource ID and with the help of a `Context`
@@ -43,4 +45,4 @@ this also simplifies testing (no need to mock `Context`) and delays expensive st
 
 ## Download
 
-TODO
+TODO Jitpack?
