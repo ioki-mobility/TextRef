@@ -14,14 +14,13 @@ private constructor(
 
     constructor(@StringRes id: Int, vararg args: Any) : this(id as Any, *args)
 
-    fun resolve(context: Context): String {
-        return when {
+    fun resolve(context: Context): String =
+        when {
             value is String && args.isEmpty() -> value
             value is String -> value.format(*args)
             args.isEmpty() -> context.getString(value as Int)
             else -> context.getString(value as Int, *args)
         }
-    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -46,11 +45,10 @@ private constructor(
             is String -> "string=$value"
             else -> "id=$value"
         }
-        val argString =
-            if (args.isEmpty())
-                ""
-            else
-                args.joinToString(prefix = ", args=[", postfix = "]")
+        val argString = if (args.isEmpty())
+            ""
+        else
+            args.joinToString(prefix = ", args=[", postfix = "]")
         return "$textString$argString"
     }
 
