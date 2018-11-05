@@ -1,0 +1,9 @@
+# Jetbrains
+*.iml
+/.idea
+/captures
+
+# Gradle
+/.gradle
+/local.properties
+/build
