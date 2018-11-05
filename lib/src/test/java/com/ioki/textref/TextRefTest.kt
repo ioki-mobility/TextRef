@@ -147,6 +147,21 @@ class TextRefTest {
     }
 
     @Test
+    fun empty_resolvesToEmptyString() {
+        val result = TextRef.EMPTY
+
+        assertThat(result.resolve(mockContext)).isEqualTo("")
+    }
+
+    @Test
+    fun empty_isSingleton() {
+        val result1 = TextRef.EMPTY
+        val result2 = TextRef.EMPTY
+
+        assertThat(result1).isSameAs(result2)
+    }
+
+    @Test
     fun testEquals() {
         assertThat(TextRef(5))
             .isEqualTo(TextRef(5))
