@@ -47,22 +47,6 @@ class TextRefTest {
     }
 
     @Test
-    fun createWithString_hasOnlyStringProperty() {
-        val text = TextRef(stringWithIntArg)
-
-        assertThat(text.string).isEqualTo(stringWithIntArg)
-        assertThat(text.id).isNull()
-    }
-
-    @Test
-    fun createWithId_hasOnlyIdProperty() {
-        val text = TextRef(idWithIntArg)
-
-        assertThat(text.id).isEqualTo(idWithIntArg)
-        assertThat(text.string).isNull()
-    }
-
-    @Test
     fun resolve_createdWithString_resultIsCorrect() {
         val result = TextRef(stringWithoutArg).resolve(mockContext)
 

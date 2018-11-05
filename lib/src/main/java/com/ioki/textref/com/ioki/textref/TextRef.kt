@@ -6,21 +6,20 @@ import java.util.Arrays
 
 class TextRef
 private constructor(
-    internal val string: String?,
-    internal val id: Int?,
+    internal val value: Any,
     internal vararg val args: Any
 ) {
 
-    constructor(string: String, vararg args: Any) : this(string, null, *args)
+    constructor(string: String, vararg args: Any) : this(string as Any, *args)
 
-    constructor(@StringRes id: Int, vararg args: Any) : this(null, id, *args)
+    constructor(@StringRes id: Int, vararg args: Any) : this(id as Any, *args)
 
     fun resolve(context: Context): String {
         return when {
-            string != null && args.isEmpty() -> string
-            string != null -> string.format(*args)
-            args.isEmpty() -> context.getString(id!!)
-            else -> context.getString(id!!, *args)
+            value is String && args.isEmpty() -> value
+            value is String -> value.format(*args)
+            args.isEmpty() -> context.getString(value as Int)
+            else -> context.getString(value as Int, *args)
         }
     }
 
@@ -30,22 +29,23 @@ private constructor(
 
         other as TextRef
 
-        if (string != other.string) return false
-        if (id != other.id) return false
+        if (value != other.value) return false
         if (!Arrays.equals(args, other.args)) return false
 
         return true
     }
 
     override fun hashCode(): Int {
-        var result = string?.hashCode() ?: 0
-        result = 31 * result + (id ?: 0)
+        var result = value.hashCode()
         result = 31 * result + Arrays.hashCode(args)
         return result
     }
 
     override fun toString(): String {
-        val textString = string?.let { "string=$it" } ?: "id=$id"
+        val textString = when (value) {
+            is String -> "string=$value"
+            else -> "id=$value"
+        }
         val argString =
             if (args.isEmpty())
                 ""
