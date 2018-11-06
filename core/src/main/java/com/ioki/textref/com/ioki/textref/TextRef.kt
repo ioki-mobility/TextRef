@@ -16,22 +16,6 @@ private constructor(
 ) {
 
     /**
-     * Creates a new TextRef from a [String]. Supports formatting using [java.util.Formatter].
-     *
-     * @param string The string used to create the TextRef
-     * @param args Format args used to format the string
-     */
-    constructor(string: String, vararg args: Any) : this(string as Any, *args)
-
-    /**
-     * Creates a new TextRef from an Android [StringRes] ID. Supports formatting using [java.util.Formatter].
-     *
-     * @param id The String resource ID used to create the TextRef
-     * @param args Format args used to format the string
-     */
-    constructor(@StringRes id: Int, vararg args: Any) : this(id as Any, *args)
-
-    /**
      * Resolves the contents of the TextRef to a [String].
      *
      * Any format args passed on creation will be used to format the string
@@ -83,5 +67,23 @@ private constructor(
          */
         @JvmField
         val EMPTY = TextRef("")
+
+        /**
+         * Creates a new TextRef from a [String]. Supports formatting using [java.util.Formatter].
+         *
+         * @param string The string used to create the TextRef
+         * @param args Format args used to format the string
+         */
+        @JvmStatic
+        fun of(string: String, vararg args: Any): TextRef = TextRef(string as Any, *args)
+
+        /**
+         * Creates a new TextRef from an Android [StringRes] ID. Supports formatting using [java.util.Formatter].
+         *
+         * @param id The String resource ID used to create the TextRef
+         * @param args Format args used to format the string
+         */
+        @JvmStatic
+        fun of(@StringRes id: Int, vararg args: Any): TextRef = TextRef(id as Any, *args)
     }
 }

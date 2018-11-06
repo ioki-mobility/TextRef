@@ -11,10 +11,10 @@ With the help of a `Context` a final string can be resolved. Format args are sup
 
 **Create**
 ```kotlin
-TextRef("My string")
-TextRef(R.string.my_string)
-TextRef("The arguments are %d and %s", 5, "foo")
-TextRef(R.string.the_arguments_are, 5, "foo")
+TextRef.of("My string")
+TextRef.of(R.string.my_string)
+TextRef.of("The arguments are %d and %s", 5, "foo")
+TextRef.of(R.string.the_arguments_are, 5, "foo")
 ```
 
 **Resolve**
@@ -35,9 +35,9 @@ Here's a simple MVP use case:
 
 ```kotlin
 val userName = if (user != null) {
-    TextRef(user.name)
+    TextRef.of(user.name)
 } else {
-    TextRef(R.string.guest)
+    TextRef.of(R.string.guest)
 }
 view.renderUserName(userName)
 ```
