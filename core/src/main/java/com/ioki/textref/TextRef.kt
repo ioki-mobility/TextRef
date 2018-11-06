@@ -1,4 +1,4 @@
-package com.ioki.textref.com.ioki.textref
+package com.ioki.textref
 
 import android.content.Context
 import androidx.annotation.StringRes

@@ -1,7 +1,6 @@
 package com.ioki.textref
 
 import android.content.Context
-import com.ioki.textref.com.ioki.textref.TextRef
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Test
