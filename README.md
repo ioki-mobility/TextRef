@@ -29,7 +29,7 @@ val text: String = textRef.resolve(context)
 * **Lazy formatting:** Pass format args and let TextRef do the formatting as late as possible.
 * **Simplified testing:** No need to mock `Context.getString`
 
-# Example
+## Example
 
 Here's a simple MVP use case:
 
