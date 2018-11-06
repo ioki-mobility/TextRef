@@ -1,6 +1,6 @@
 # TextRef
 
-[![Build Status](https://travis-ci.com/ioki-mobility/TextRef.svg?branch=master)](https://travis-ci.com/gustavkarlsson/krate)
+[![Build Status](https://travis-ci.org/ioki-mobility/TextRef.svg?branch=master)](https://travis-ci.org/ioki-mobility/TextRef)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ioki-mobility/TextRef/blob/master/LICENSE.md)
 
 ## What?
