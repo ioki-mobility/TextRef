@@ -21,5 +21,8 @@ cache:
     - $HOME/.gradle/wrapper/
     - $HOME/.android/build-cache
 
+before_install:
+  - yes | sdkmanager "platforms;android-28"
+
 # after_success:
 #   - bash <(curl -s https://codecov.io/bash)
