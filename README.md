@@ -4,8 +4,8 @@ TODO Badges!
 
 ## What?
 
-TextRef is an abstraction over Android strings. It wraps a String or a string resource ID and with the help of a `Context`
-a final string can be resolved. Format args are supported too!
+TextRef is an abstraction over Android strings. It's a wrapper around a String or string resource ID.
+With the help of a `Context` a final string can be resolved. Format args are supported too!
 
 ## How?
 
@@ -13,8 +13,8 @@ a final string can be resolved. Format args are supported too!
 ```kotlin
 TextRef("My string")
 TextRef(R.string.my_string)
-TextRef("The numbers are %d and %d", 5, 7)
-TextRef(R.string.the_numbers_are, 5, 7)
+TextRef("The arguments are %d and %s", 5, "foo")
+TextRef(R.string.the_arguments_are, 5, "foo")
 ```
 
 **Resolve**
@@ -23,8 +23,15 @@ val text: String = textRef.resolve(context)
 ```
 
 ## Why?
-Consider this situation: You have an MVP application and want to present some text.
-The problem is that this text is sometimes a `String` and sometimes a resource ID:
+
+* **String agnostic APIs:** Make functions return TextRefs to allow for both strings and string resource IDs
+* **Less dependent on Context:** No need to resolve string resources close to business logic such as view models
+* **Lazy formatting:** Pass format args and let TextRef do the formatting as late as possible.
+* **Simplified testing:** No need to mock `Context.getString`
+
+# Example
+
+Here's a simple MVP use case:
 
 ```kotlin
 val userName = if (user != null) {
@@ -35,12 +42,8 @@ val userName = if (user != null) {
 view.renderUserName(userName)
 ```
 
-Using TextRef, you're now "string agnostic" all the way to the view. In addition to a cleaner more consistent API
-this also simplifies testing (no need to mock `Context`) and delays expensive string formatting until the very end.
-
 ## Requirements
 
-* AndroidX enabled
 * API Level >= 14
 
 ## Download
