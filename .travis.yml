@@ -11,7 +11,7 @@ cache:
     - $HOME/.android/build-cache
 
 before_script:
-  - yes | sdkmanager --licenses
+  - yes | sdkmanager --update
 
 script: ./gradlew check
 
