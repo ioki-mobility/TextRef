@@ -4,16 +4,41 @@ import android.content.Context
 import androidx.annotation.StringRes
 import java.util.Arrays
 
+/**
+ * An abstraction of text that holds either a [String] object or a [StringRes] ID.
+ *
+ * Use [resolve] to get a [String] out of it.
+ */
 class TextRef
 private constructor(
     internal val value: Any,
     internal vararg val args: Any
 ) {
 
+    /**
+     * Creates a new TextRef from a [String]. Supports formatting using [java.util.Formatter].
+     *
+     * @param string The string used to create the TextRef
+     * @param args Format args used to format the string
+     */
     constructor(string: String, vararg args: Any) : this(string as Any, *args)
 
+    /**
+     * Creates a new TextRef from an Android [StringRes] ID. Supports formatting using [java.util.Formatter].
+     *
+     * @param id The String resource ID used to create the TextRef
+     * @param args Format args used to format the string
+     */
     constructor(@StringRes id: Int, vararg args: Any) : this(id as Any, *args)
 
+    /**
+     * Resolves the contents of the TextRef to a [String].
+     *
+     * Any format args passed on creation will be used to format the string
+     *
+     * @param context The context used to resolve the string if created from a [StringRes] ID
+     * @return A String, formatted with any args passed on creation
+     */
     fun resolve(context: Context): String =
         when {
             value is String && args.isEmpty() -> value
@@ -53,6 +78,9 @@ private constructor(
     }
 
     companion object {
+        /**
+         * A TextRef holding an empty [String]
+         */
         @JvmField
         val EMPTY = TextRef("")
     }
