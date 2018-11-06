@@ -1,6 +1,7 @@
 # TextRef
 
-TODO Badges!
+[![Build Status](https://travis-ci.com/ioki-mobility/TextRef.svg?branch=master)](https://travis-ci.com/gustavkarlsson/krate)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ioki-mobility/TextRef/blob/master/LICENSE.md)
 
 ## What?
 
