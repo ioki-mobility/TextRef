@@ -76,3 +76,9 @@ dependencies {
     implementation 'com.github.ioki-mobility:TextRef:<latest-version>'
 }
 ```
+
+## Releasing
+
+```
+./gradlew release -Prelease.forceVersion=x.y.z
+```
