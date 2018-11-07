@@ -79,6 +79,14 @@ dependencies {
 
 ## Releasing
 
+**Step 1.** Make sure you are on the master branch.
+
+**Step 2.** Add the changes to the top of CHANGELOG.md
+
+**Step 3.** Commit and push
+
+**Step 4.** Run the gradle release task:
+
 ```
 ./gradlew release -Prelease.forceVersion=x.y.z
 ```
