@@ -1,7 +1,8 @@
 # TextRef
 
-[![Build Status](https://travis-ci.org/ioki-mobility/TextRef.svg?branch=master)](https://travis-ci.org/ioki-mobility/TextRef)
-[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ioki-mobility/TextRef/blob/master/LICENSE.md)
+[![Travis](https://travis-ci.org/ioki-mobility/TextRef.svg?branch=master)](https://travis-ci.org/ioki-mobility/TextRef)
+[![Jitpack](https://jitpack.io/v/ioki-mobility/TextRef.svg)](https://jitpack.io/#ioki-mobility/TextRef)
+[![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ioki-mobility/TextRef/blob/master/LICENSE.md)
 
 ## What?
 
@@ -35,6 +36,12 @@ val text: String = textRef.resolve(context)
 Here's a simple MVP use case:
 
 ```kotlin
+// View
+fun renderUserName(text: TextRef) {
+    userNameTextView.text = text.resolve(context)
+}
+
+// Presenter
 val userName = if (user != null) {
     TextRef(user.name)
 } else {
@@ -49,4 +56,23 @@ view.renderUserName(userName)
 
 ## Download
 
-TODO Jitpack?
+TextRef is hosted on JitPack. Here's how you include it in your gradle project:
+
+**Step 1.** Add the JitPack repository to your build file:
+
+```groovy
+allprojects {
+    repositories {
+        // Other repositories
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+**Step 2.** Add the dependency:
+
+```groovy
+dependencies {
+    implementation 'com.github.ioki-mobility:TextRef:<latest-version>'
+}
+```
