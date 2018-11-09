@@ -18,6 +18,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 28
         versionName scmVersion.version
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_6
@@ -34,4 +35,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.assertj:assertj-core:3.8.0'
     testImplementation 'org.mockito:mockito-core:2.22.0'
+
+    // Android Test
+    androidTestImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.0.0'
+    androidTestImplementation 'com.artemzin.assert-parcelable:assert-parcelable:1.0.1'
 }
