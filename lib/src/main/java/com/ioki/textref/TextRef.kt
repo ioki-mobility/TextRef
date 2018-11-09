@@ -1,6 +1,9 @@
 package com.ioki.textref
 
 import android.content.Context
+import android.os.Parcel
+import android.os.ParcelFormatException
+import android.os.Parcelable
 import androidx.annotation.StringRes
 import java.util.Arrays
 
@@ -13,7 +16,7 @@ class TextRef
 private constructor(
     internal val value: Any,
     internal vararg val args: Any
-) {
+) : Parcelable {
 
     /**
      * Creates a new TextRef from a [String]. Supports formatting using [java.util.Formatter].
@@ -77,11 +80,52 @@ private constructor(
         return "$textString$argString"
     }
 
-    companion object {
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        when (value) {
+            is Int -> {
+                parcel.writeInt(TYPE_STRING_RES)
+                parcel.writeInt(value)
+            }
+            is String -> {
+                parcel.writeInt(TYPE_STRING)
+                parcel.writeString(value)
+            }
+            else -> throw ParcelFormatException("Unsupported type class: ${value::class.java} for value: $value")
+        }
+        parcel.writeArray(args)
+    }
+
+    override fun describeContents() = 0
+
+    companion object CREATOR : Parcelable.Creator<TextRef> {
         /**
          * A TextRef holding an empty [String]
          */
         @JvmField
         val EMPTY = TextRef("")
+
+        override fun createFromParcel(parcel: Parcel): TextRef {
+            val type = parcel.readInt()
+            return when (type) {
+                TYPE_STRING_RES -> {
+                    val resId = parcel.readInt()
+                    val args = parcel.readArray(this::class.java.classLoader)!!
+                    TextRef(resId, *args)
+                }
+                TYPE_STRING -> {
+                    val string = parcel.readString()!!
+                    val args = parcel.readArray(this::class.java.classLoader)!!
+                    TextRef(string, *args)
+                }
+                else -> throw ParcelFormatException("Unsupported type id: $type")
+            }
+        }
+
+        override fun newArray(size: Int): Array<TextRef?> {
+            return arrayOfNulls(size)
+        }
+
+        private const val TYPE_STRING_RES = 1
+        private const val TYPE_STRING = 2
     }
 }
