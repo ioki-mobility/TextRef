@@ -42,13 +42,21 @@ private constructor(
      * @param context The context used to resolve the string if created from a [StringRes] ID
      * @return A String, formatted with any args passed on creation
      */
-    fun resolve(context: Context): String =
-        when {
+    fun resolve(context: Context): String {
+        val args = processArgs(context)
+        return when {
             value is String && args.isEmpty() -> value
             value is String -> value.format(*args)
             args.isEmpty() -> context.getString(value as Int)
             else -> context.getString(value as Int, *args)
         }
+    }
+
+    private fun processArgs(context: Context): Array<Any> =
+        args.map {
+            if (it is TextRef) it.resolve(context)
+            else it
+        }.toTypedArray()
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
