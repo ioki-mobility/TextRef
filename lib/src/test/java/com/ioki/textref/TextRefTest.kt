@@ -27,6 +27,7 @@ class TextRefTest {
 
     private val intArg = 5
     private val stringArg = "bar"
+    private val textRefArg = TextRef(stringArg)
 
     private val formattedStringWithIntArg = "foo $intArg"
     private val formattedStringWithStringArg = "foo bar"
@@ -74,6 +75,13 @@ class TextRefTest {
     }
 
     @Test
+    fun resolve_createdWithStringAndTextRefArg_resultIsCorrect() {
+        val result = TextRef(stringWithStringArg, textRefArg).resolve(mockContext)
+
+        assertThat(result).isEqualTo(formattedStringWithStringArg)
+    }
+
+    @Test
     fun resolve_createdWithStringAndTwoArgs_resultIsCorrect() {
         val result = TextRef(stringWithTwoArgs, intArg, stringArg).resolve(mockContext)
 
@@ -90,6 +98,13 @@ class TextRefTest {
     @Test
     fun resolve_createdWithIdAndStringArg_resultIsCorrect() {
         val result = TextRef(idWithStringArg, stringArg).resolve(mockContext)
+
+        assertThat(result).isEqualTo(formattedIdWithStringArg)
+    }
+
+    @Test
+    fun resolve_createdWithIdAndTextRefArg_resultIsCorrect() {
+        val result = TextRef(idWithStringArg, textRefArg).resolve(mockContext)
 
         assertThat(result).isEqualTo(formattedIdWithStringArg)
     }
