@@ -25,7 +25,10 @@ private constructor(
      * @param string The string used to create the TextRef
      * @param args Format args used to format the string
      */
-    @Deprecated("Use factory function instead", ReplaceWith("TextRef.string(string, *args)"))
+    @Deprecated(
+        "Use factory function instead",
+        ReplaceWith("TextRef.string(string, *args)", "com.ioki.textref.TextRef")
+    )
     constructor(string: String, vararg args: Any) : this(string as Any, *args)
 
     /**
@@ -34,7 +37,10 @@ private constructor(
      * @param id The String resource ID used to create the TextRef
      * @param args Format args used to format the string
      */
-    @Deprecated("Use factory function instead", ReplaceWith("TextRef.stringRes(id, *args)"))
+    @Deprecated(
+        "Use factory function instead",
+        ReplaceWith("TextRef.stringRes(id, *args)", "com.ioki.textref.TextRef")
+    )
     constructor(@StringRes id: Int, vararg args: Any) : this(id as Any, *args)
 
     /**
