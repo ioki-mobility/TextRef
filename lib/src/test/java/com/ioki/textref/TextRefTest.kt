@@ -1,6 +1,7 @@
 package com.ioki.textref
 
 import android.content.Context
+import android.content.res.Resources
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Test
@@ -15,6 +16,11 @@ class TextRefTest {
     @Mock
     private lateinit var mockContext: Context
 
+    @Mock
+    private lateinit var mockResources: Resources
+
+    private val quantity = 7
+
     private val stringWithoutArg = "foo"
     private val stringWithIntArg = "foo %d"
     private val stringWithStringArg = "foo %s"
@@ -27,7 +33,7 @@ class TextRefTest {
 
     private val intArg = 5
     private val stringArg = "bar"
-    private val textRefArg = TextRef(stringArg)
+    private val textRefArg = TextRef.string(stringArg)
 
     private val formattedStringWithIntArg = "foo $intArg"
     private val formattedStringWithStringArg = "foo bar"
@@ -38,108 +44,171 @@ class TextRefTest {
     private val formattedIdWithStringArg = "biz bar"
     private val formattedIdWithTwoArgs = "biz $intArg bar"
 
+    private val formattedPluralWithoutArg = "boz"
+    private val formattedPluralWithIntArg = "boz $intArg"
+    private val formattedPluralWithStringArg = "boz bar"
+    private val formattedPluralWithTwoArgs = "boz $intArg bar"
+
     @Before
     fun setUp() {
+        `when`(mockContext.resources).thenReturn(mockResources)
         `when`(mockContext.getString(idWithoutArg)).thenReturn(formattedIdWithoutArg)
         `when`(mockContext.getString(idWithIntArg, intArg)).thenReturn(formattedIdWithIntArg)
         `when`(mockContext.getString(idWithStringArg, stringArg)).thenReturn(formattedIdWithStringArg)
         `when`(mockContext.getString(idWithTwoArgs, intArg, stringArg)).thenReturn(formattedIdWithTwoArgs)
+        `when`(mockResources.getQuantityString(idWithoutArg, quantity)).thenReturn(formattedPluralWithoutArg)
+        `when`(mockResources.getQuantityString(idWithIntArg, quantity, intArg)).thenReturn(formattedPluralWithIntArg)
+        `when`(mockResources.getQuantityString(idWithStringArg, quantity, stringArg)).thenReturn(
+            formattedPluralWithStringArg
+        )
+        `when`(mockResources.getQuantityString(idWithTwoArgs, quantity, intArg, stringArg)).thenReturn(
+            formattedPluralWithTwoArgs
+        )
     }
 
     @Test
     fun resolve_createdWithString_resultIsCorrect() {
-        val result = TextRef(stringWithoutArg).resolve(mockContext)
+        val result = TextRef.string(stringWithoutArg).resolve(mockContext)
 
         assertThat(result).isEqualTo(stringWithoutArg)
     }
 
     @Test
-    fun resolve_createdWithId_resultIsCorrect() {
-        val result = TextRef(idWithoutArg).resolve(mockContext)
+    fun resolve_createdWithStringRes_resultIsCorrect() {
+        val result = TextRef.stringRes(idWithoutArg).resolve(mockContext)
 
         assertThat(result).isEqualTo(formattedIdWithoutArg)
     }
 
     @Test
+    fun resolve_createdWithPluralsRes_resultIsCorrect() {
+        val result = TextRef.pluralsRes(idWithoutArg, quantity).resolve(mockContext)
+
+        assertThat(result).isEqualTo(formattedPluralWithoutArg)
+    }
+
+    @Test
     fun resolve_createdWithStringAndIntArg_resultIsCorrect() {
-        val result = TextRef(stringWithIntArg, intArg).resolve(mockContext)
+        val result = TextRef.string(stringWithIntArg, intArg).resolve(mockContext)
 
         assertThat(result).isEqualTo(formattedStringWithIntArg)
     }
 
     @Test
     fun resolve_createdWithStringAndStringArg_resultIsCorrect() {
-        val result = TextRef(stringWithStringArg, stringArg).resolve(mockContext)
+        val result = TextRef.string(stringWithStringArg, stringArg).resolve(mockContext)
 
         assertThat(result).isEqualTo(formattedStringWithStringArg)
     }
 
     @Test
     fun resolve_createdWithStringAndTextRefArg_resultIsCorrect() {
-        val result = TextRef(stringWithStringArg, textRefArg).resolve(mockContext)
+        val result = TextRef.string(stringWithStringArg, textRefArg).resolve(mockContext)
 
         assertThat(result).isEqualTo(formattedStringWithStringArg)
     }
 
     @Test
     fun resolve_createdWithStringAndTwoArgs_resultIsCorrect() {
-        val result = TextRef(stringWithTwoArgs, intArg, stringArg).resolve(mockContext)
+        val result = TextRef.string(stringWithTwoArgs, intArg, stringArg).resolve(mockContext)
 
         assertThat(result).isEqualTo(formattedStringWithTwoArgs)
     }
 
     @Test
-    fun resolve_createdWithIdAndIntArg_resultIsCorrect() {
-        val result = TextRef(idWithIntArg, intArg).resolve(mockContext)
+    fun resolve_createdWithStringResAndIntArg_resultIsCorrect() {
+        val result = TextRef.stringRes(idWithIntArg, intArg).resolve(mockContext)
 
         assertThat(result).isEqualTo(formattedIdWithIntArg)
     }
 
     @Test
-    fun resolve_createdWithIdAndStringArg_resultIsCorrect() {
-        val result = TextRef(idWithStringArg, stringArg).resolve(mockContext)
+    fun resolve_createdWithStringResAndStringArg_resultIsCorrect() {
+        val result = TextRef.stringRes(idWithStringArg, stringArg).resolve(mockContext)
 
         assertThat(result).isEqualTo(formattedIdWithStringArg)
     }
 
     @Test
-    fun resolve_createdWithIdAndTextRefArg_resultIsCorrect() {
-        val result = TextRef(idWithStringArg, textRefArg).resolve(mockContext)
+    fun resolve_createdWithStringResAndTextRefArg_resultIsCorrect() {
+        val result = TextRef.stringRes(idWithStringArg, textRefArg).resolve(mockContext)
 
         assertThat(result).isEqualTo(formattedIdWithStringArg)
     }
 
     @Test
-    fun resolve_createdWithIdAndTwoArgs_resultIsCorrect() {
-        val result = TextRef(idWithTwoArgs, intArg, stringArg).resolve(mockContext)
+    fun resolve_createdWithStringResAndTwoArgs_resultIsCorrect() {
+        val result = TextRef.stringRes(idWithTwoArgs, intArg, stringArg).resolve(mockContext)
 
         assertThat(result).isEqualTo(formattedIdWithTwoArgs)
     }
 
     @Test
-    fun toString_createdWithId_resultIsCorrect() {
-        val result = TextRef(idWithoutArg).toString()
+    fun toString_createdWithStringRes_resultIsCorrect() {
+        val result = TextRef.stringRes(idWithoutArg).toString()
 
         assertThat(result).isEqualTo("id=$idWithoutArg")
     }
 
     @Test
-    fun toString_createdWithIdAndTwoArgs_resultIsCorrect() {
-        val result = TextRef(idWithTwoArgs, intArg, stringArg).toString()
+    fun toString_createdWithStringResAndTwoArgs_resultIsCorrect() {
+        val result = TextRef.stringRes(idWithTwoArgs, intArg, stringArg).toString()
 
         assertThat(result).isEqualTo("id=$idWithTwoArgs, args=[$intArg, $stringArg]")
     }
 
     @Test
+    fun resolve_createdWithPluralResAndIntArg_resultIsCorrect() {
+        val result = TextRef.pluralsRes(idWithIntArg, quantity, intArg).resolve(mockContext)
+
+        assertThat(result).isEqualTo(formattedPluralWithIntArg)
+    }
+
+    @Test
+    fun resolve_createdWithPluralResAndStringArg_resultIsCorrect() {
+        val result = TextRef.pluralsRes(idWithStringArg, quantity, stringArg).resolve(mockContext)
+
+        assertThat(result).isEqualTo(formattedPluralWithStringArg)
+    }
+
+    @Test
+    fun resolve_createdWithPluralResAndTextRefArg_resultIsCorrect() {
+        val result = TextRef.pluralsRes(idWithStringArg, quantity, textRefArg).resolve(mockContext)
+
+        assertThat(result).isEqualTo(formattedPluralWithStringArg)
+    }
+
+    @Test
+    fun resolve_createdWithPluralResAndTwoArgs_resultIsCorrect() {
+        val result = TextRef.pluralsRes(idWithTwoArgs, quantity, intArg, stringArg).resolve(mockContext)
+
+        assertThat(result).isEqualTo(formattedPluralWithTwoArgs)
+    }
+
+    @Test
+    fun toString_createdWithPluralRes_resultIsCorrect() {
+        val result = TextRef.pluralsRes(idWithoutArg, quantity).toString()
+
+        assertThat(result).isEqualTo("id=$idWithoutArg, quantity=$quantity")
+    }
+
+    @Test
+    fun toString_createdWithPluralResAndTwoArgs_resultIsCorrect() {
+        val result = TextRef.pluralsRes(idWithTwoArgs, quantity, intArg, stringArg).toString()
+
+        assertThat(result).isEqualTo("id=$idWithTwoArgs, quantity=$quantity, args=[$intArg, $stringArg]")
+    }
+
+    @Test
     fun toString_createdWithString_resultIsCorrect() {
-        val result = TextRef(stringWithoutArg).toString()
+        val result = TextRef.string(stringWithoutArg).toString()
 
         assertThat(result).isEqualTo("string=$stringWithoutArg")
     }
 
     @Test
     fun toString_createdWithStringAndTwoArgs_resultIsCorrect() {
-        val result = TextRef(stringWithTwoArgs, intArg, stringArg).toString()
+        val result = TextRef.string(stringWithTwoArgs, intArg, stringArg).toString()
 
         assertThat(result).isEqualTo("string=$stringWithTwoArgs, args=[$intArg, $stringArg]")
     }
@@ -161,45 +230,49 @@ class TextRefTest {
 
     @Test
     fun testEquals() {
-        assertThat(TextRef(5))
-            .isEqualTo(TextRef(5))
-        assertThat(TextRef(6))
-            .isNotEqualTo(TextRef(7))
-        assertThat(TextRef("foobar"))
-            .isEqualTo(TextRef("foobar"))
-        assertThat(TextRef("foobar"))
-            .isNotEqualTo(TextRef("bizbaz"))
-        assertThat(TextRef("foobar"))
-            .isNotEqualTo(TextRef(7))
-        assertThat(TextRef("foobar", 1))
-            .isEqualTo(TextRef("foobar", 1))
-        assertThat(TextRef("foobar", 1))
-            .isNotEqualTo(TextRef("bizbaz", 2))
-        assertThat(TextRef(5, 1))
-            .isEqualTo(TextRef(5, 1))
-        assertThat(TextRef(5, 1))
-            .isNotEqualTo(TextRef(5, 2))
+        assertThat(TextRef.stringRes(5))
+            .isEqualTo(TextRef.stringRes(5))
+        assertThat(TextRef.stringRes(6))
+            .isNotEqualTo(TextRef.stringRes(7))
+        assertThat(TextRef.string("foobar"))
+            .isEqualTo(TextRef.string("foobar"))
+        assertThat(TextRef.string("foobar"))
+            .isNotEqualTo(TextRef.string("bizbaz"))
+        assertThat(TextRef.string("foobar"))
+            .isNotEqualTo(TextRef.stringRes(7))
+        assertThat(TextRef.string("foobar", 1))
+            .isEqualTo(TextRef.string("foobar", 1))
+        assertThat(TextRef.string("foobar", 1))
+            .isNotEqualTo(TextRef.string("bizbaz", 2))
+        assertThat(TextRef.stringRes(5, 1))
+            .isEqualTo(TextRef.stringRes(5, 1))
+        assertThat(TextRef.stringRes(5, 1))
+            .isNotEqualTo(TextRef.stringRes(5, 2))
     }
 
     @Test
     fun testHashCode() {
-        assertThat(TextRef(5)
-            .hashCode()).isEqualTo(TextRef(5).hashCode())
-        assertThat(TextRef(6)
-            .hashCode()).isNotEqualTo(TextRef(7).hashCode())
-        assertThat(TextRef("foobar").hashCode())
-            .isEqualTo(TextRef("foobar").hashCode())
-        assertThat(TextRef("foobar").hashCode())
-            .isNotEqualTo(TextRef("bizbaz").hashCode())
-        assertThat(TextRef("foobar").hashCode())
-            .isNotEqualTo(TextRef(7).hashCode())
-        assertThat(TextRef("foobar", 1).hashCode())
-            .isEqualTo(TextRef("foobar", 1).hashCode())
-        assertThat(TextRef("foobar", 1).hashCode())
-            .isNotEqualTo(TextRef("bizbaz", 2).hashCode())
-        assertThat(TextRef(5, 1).hashCode())
-            .isEqualTo(TextRef(5, 1).hashCode())
-        assertThat(TextRef(5, 1).hashCode())
-            .isNotEqualTo(TextRef(5, 2).hashCode())
+        assertThat(
+            TextRef.stringRes(5)
+                .hashCode()
+        ).isEqualTo(TextRef.stringRes(5).hashCode())
+        assertThat(
+            TextRef.stringRes(6)
+                .hashCode()
+        ).isNotEqualTo(TextRef.stringRes(7).hashCode())
+        assertThat(TextRef.string("foobar").hashCode())
+            .isEqualTo(TextRef.string("foobar").hashCode())
+        assertThat(TextRef.string("foobar").hashCode())
+            .isNotEqualTo(TextRef.string("bizbaz").hashCode())
+        assertThat(TextRef.string("foobar").hashCode())
+            .isNotEqualTo(TextRef.stringRes(7).hashCode())
+        assertThat(TextRef.string("foobar", 1).hashCode())
+            .isEqualTo(TextRef.string("foobar", 1).hashCode())
+        assertThat(TextRef.string("foobar", 1).hashCode())
+            .isNotEqualTo(TextRef.string("bizbaz", 2).hashCode())
+        assertThat(TextRef.stringRes(5, 1).hashCode())
+            .isEqualTo(TextRef.stringRes(5, 1).hashCode())
+        assertThat(TextRef.stringRes(5, 1).hashCode())
+            .isNotEqualTo(TextRef.stringRes(5, 2).hashCode())
     }
 }
