@@ -6,17 +6,17 @@
 
 ## What?
 
-TextRef is an abstraction over Android strings. It's a wrapper around a String or string resource ID.
-With the help of a `Context` a final string can be resolved. Format args are supported too!
+TextRef is an abstraction over Android text. It wraps a `String` or a string/plurals resource ID.
+With the help of an Android `Context` a final `String` can be resolved. Format args are supported too!
 
 ## How?
 
 **Create**
 ```kotlin
-TextRef("My string")
-TextRef(R.string.my_string)
-TextRef("The arguments are %d and %s", 5, "foo")
-TextRef(R.string.the_arguments_are, 5, "foo")
+TextRef.string("My string")
+TextRef.stringRes(R.string.my_string)
+TextRef.pluralsRes(R.plurals.number_of_items, 3)
+TextRef.string("The arguments are %d and %s", 5, "foo")
 ```
 
 **Resolve**
@@ -26,7 +26,7 @@ val text: String = textRef.resolve(context)
 
 ## Why?
 
-* **String agnostic APIs:** Make functions return TextRefs to allow for both strings and string resource IDs
+* **String agnostic APIs:** Make functions return TextRefs to allow for any type of text representation
 * **Less dependent on Context:** No need to resolve string resources close to business logic such as view models
 * **Lazy formatting:** Pass format args and let TextRef do the formatting as late as possible.
 * **Simplified testing:** No need to mock `Context.getString`
@@ -43,9 +43,9 @@ fun renderUserName(text: TextRef) {
 
 // Presenter
 val userName = if (user != null) {
-    TextRef(user.name)
+    TextRef.string(user.name)
 } else {
-    TextRef(R.string.guest)
+    TextRef.stringRes(R.string.guest)
 }
 view.renderUserName(userName)
 ```
