@@ -74,6 +74,13 @@ class TextRefTest {
     }
 
     @Test
+    fun createdWithNullString_resultIsEmptyTextRef() {
+        val result = TextRef.string(null)
+
+        assertThat(result).isEqualTo(TextRef.EMPTY)
+    }
+
+    @Test
     fun resolve_createdWithStringRes_resultIsCorrect() {
         val result = TextRef.stringRes(idWithoutArg).resolve(mockContext)
 
@@ -81,10 +88,24 @@ class TextRefTest {
     }
 
     @Test
+    fun createdWithNullStringRes_resultIsEmptyTextRef() {
+        val result = TextRef.stringRes(null)
+
+        assertThat(result).isEqualTo(TextRef.EMPTY)
+    }
+
+    @Test
     fun resolve_createdWithPluralsRes_resultIsCorrect() {
         val result = TextRef.pluralsRes(idWithoutArg, quantity).resolve(mockContext)
 
         assertThat(result).isEqualTo(formattedPluralWithoutArg)
+    }
+
+    @Test
+    fun createdWithNullPluralsRes_resultIsEmptyTextRef() {
+        val result = TextRef.pluralsRes(null, quantity)
+
+        assertThat(result).isEqualTo(TextRef.EMPTY)
     }
 
     @Test
