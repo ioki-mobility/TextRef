@@ -6,7 +6,7 @@ import android.os.ParcelFormatException
 import android.os.Parcelable
 import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes
-import java.util.*
+import java.util.Arrays
 
 /**
  * An abstraction of text that holds either a [String] object or a [StringRes] ID.
@@ -145,9 +145,8 @@ private constructor(
          * @param string The string used to create the TextRef
          * @param args Format args used to format the string
          */
-        fun string(string: String, vararg args: Any): TextRef {
-            return TextRef(string as Any, *args)
-        }
+        fun string(string: String?, vararg args: Any): TextRef =
+            if (!string.isNullOrEmpty()) TextRef(string as Any, *args) else EMPTY
 
         /**
          * Creates a new TextRef from an Android [StringRes] ID. Supports formatting using [java.util.Formatter].
@@ -155,9 +154,8 @@ private constructor(
          * @param id The String resource ID used to create the TextRef
          * @param args Format args used to format the string
          */
-        fun stringRes(@StringRes id: Int, vararg args: Any): TextRef {
-            return TextRef(id as Any, *args)
-        }
+        fun stringRes(@StringRes id: Int?, vararg args: Any): TextRef =
+            if (id != null) TextRef(id as Any, *args) else EMPTY
 
         /**
          * Creates a new TextRef from an Android [PluralsRes] ID. Supports formatting using [java.util.Formatter].
@@ -166,9 +164,8 @@ private constructor(
          * @param quantity The quantity to use for plural resolution
          * @param args Format args used to format the string
          */
-        fun pluralsRes(@PluralsRes id: Int, quantity: Int, vararg args: Any): TextRef {
-            return TextRef((id to quantity), *args)
-        }
+        fun pluralsRes(@PluralsRes id: Int?, quantity: Int, vararg args: Any): TextRef =
+            if (id != null) TextRef((id to quantity), *args) else EMPTY
 
         override fun createFromParcel(parcel: Parcel): TextRef {
             val classLoader = this::class.java.classLoader
