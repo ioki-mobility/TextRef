@@ -146,7 +146,7 @@ private constructor(
          * @param args Format args used to format the string
          */
         fun string(string: String?, vararg args: Any): TextRef =
-            if (string != null) TextRef(string as Any, *args) else EMPTY
+            if (!string.isNullOrEmpty()) TextRef(string as Any, *args) else EMPTY
 
         /**
          * Creates a new TextRef from an Android [StringRes] ID. Supports formatting using [java.util.Formatter].
