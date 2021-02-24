@@ -16,7 +16,7 @@ import java.util.Arrays
 class TextRef
 private constructor(
     internal val value: Any,
-    internal vararg val args: Any
+    internal val args: Array<out Any>
 ) : Parcelable {
 
     /**
@@ -29,7 +29,7 @@ private constructor(
         "Use factory function instead",
         ReplaceWith("TextRef.string(string, *args)", "com.ioki.textref.TextRef")
     )
-    constructor(string: String, vararg args: Any) : this(string as Any, *args)
+    constructor(string: String, vararg args: Any) : this(string as Any, args)
 
     /**
      * Creates a new TextRef from an Android [StringRes] ID. Supports formatting using [java.util.Formatter].
@@ -41,7 +41,7 @@ private constructor(
         "Use factory function instead",
         ReplaceWith("TextRef.stringRes(id, *args)", "com.ioki.textref.TextRef")
     )
-    constructor(@StringRes id: Int, vararg args: Any) : this(id as Any, *args)
+    constructor(@StringRes id: Int, vararg args: Any) : this(id as Any, args)
 
     /**
      * Resolves the contents of the TextRef to a [String].
@@ -137,7 +137,7 @@ private constructor(
          * A TextRef holding an empty [String]
          */
         @JvmField
-        val EMPTY = TextRef("" as Any)
+        val EMPTY = TextRef("" as Any, emptyArray())
 
         /**
          * Creates a new TextRef from a [String]. Supports formatting using [java.util.Formatter].
@@ -146,7 +146,7 @@ private constructor(
          * @param args Format args used to format the string
          */
         fun string(string: String?, vararg args: Any): TextRef =
-            if (!string.isNullOrEmpty()) TextRef(string as Any, *args) else EMPTY
+            if (!string.isNullOrEmpty()) TextRef(string as Any, args) else EMPTY
 
         /**
          * Creates a new TextRef from an Android [StringRes] ID. Supports formatting using [java.util.Formatter].
@@ -155,7 +155,7 @@ private constructor(
          * @param args Format args used to format the string
          */
         fun stringRes(@StringRes id: Int?, vararg args: Any): TextRef =
-            if (id != null) TextRef(id as Any, *args) else EMPTY
+            if (id != null) TextRef(id as Any, args) else EMPTY
 
         /**
          * Creates a new TextRef from an Android [PluralsRes] ID. Supports formatting using [java.util.Formatter].
@@ -165,7 +165,7 @@ private constructor(
          * @param args Format args used to format the string
          */
         fun pluralsRes(@PluralsRes id: Int?, quantity: Int, vararg args: Any): TextRef =
-            if (id != null) TextRef((id to quantity), *args) else EMPTY
+            if (id != null) TextRef((id to quantity), args) else EMPTY
 
         override fun createFromParcel(parcel: Parcel): TextRef {
             val classLoader = this::class.java.classLoader
