@@ -79,7 +79,7 @@ dependencies {
 
 ## Releasing
 
-**Step 1.** Make sure you are on the master branch.
+**Step 1.** Make sure you are on the `main` branch.
 
 **Step 2.** Add the changes to the top of CHANGELOG.md
 
