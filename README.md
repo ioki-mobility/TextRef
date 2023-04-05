@@ -1,6 +1,6 @@
 # TextRef
 
-[![Travis](https://travis-ci.org/ioki-mobility/TextRef.svg?branch=master)](https://travis-ci.org/ioki-mobility/TextRef)
+[![CI](https://github.com/ioki-mobility/TextRef/actions/workflows/test-lib.yml/badge.svg)](https://github.com/ioki-mobility/TextRef/actions/workflows/test-lib.yml)
 [![Jitpack](https://jitpack.io/v/ioki-mobility/TextRef.svg)](https://jitpack.io/#ioki-mobility/TextRef)
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ioki-mobility/TextRef/blob/master/LICENSE.md)
 
@@ -79,7 +79,7 @@ dependencies {
 
 ## Releasing
 
-**Step 1.** Make sure you are on the master branch.
+**Step 1.** Make sure you are on the `main` branch.
 
 **Step 2.** Add the changes to the top of CHANGELOG.md
 
