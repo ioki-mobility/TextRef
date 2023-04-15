@@ -11,6 +11,8 @@ artifacts {
 }
 
 android {
+    namespace = 'com.ioki.textref'
+
     compileSdkVersion 30
 
     defaultConfig {
