@@ -11,4 +11,4 @@ androidTest-assertParcelable = "com.artemzin.assert-parcelable:assert-parcelable
 [plugins]
 androidGradlePlugin = "com.android.library:7.4.1"
 kotlin = "org.jetbrains.kotlin.jvm:1.8.20"
-axionReleasePlugin = "pl.allegro.tech.build.axion-release:1.10.3"
+axionReleasePlugin = "pl.allegro.tech.build.axion-release:1.15.0"
