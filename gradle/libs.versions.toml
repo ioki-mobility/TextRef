@@ -5,7 +5,7 @@ test-assertj = "org.assertj:assertj-core:3.19.0"
 test-mockito = "org.mockito:mockito-core:5.3.0"
 androidTest-junit = "junit:junit:4.13.2"
 androidTest-runner = "androidx.test:runner:1.5.2"
-androidTest-extJunit = "androidx.test.ext:junit:1.1.2"
+androidTest-extJunit = "androidx.test.ext:junit:1.1.5"
 androidTest-assertParcelable = "com.artemzin.assert-parcelable:assert-parcelable:1.0.1"
 
 [plugins]
