@@ -1,5 +1,5 @@
 [libraries]
-android-annotation = "androidx.annotation:annotation:1.1.0"
+android-annotation = "androidx.annotation:annotation:1.6.0"
 test-junit = "junit:junit:4.13.2"
 test-assertj = "org.assertj:assertj-core:3.19.0"
 test-mockito = "org.mockito:mockito-core:5.3.0"
