@@ -9,6 +9,6 @@ androidTest-extJunit = "androidx.test.ext:junit:1.1.5"
 androidTest-assertParcelable = "com.artemzin.assert-parcelable:assert-parcelable:1.0.1"
 
 [plugins]
-androidGradlePlugin = "com.android.library:7.4.1"
+androidGradlePlugin = "com.android.library:8.0.0"
 kotlin = "org.jetbrains.kotlin.jvm:1.8.20"
 axionReleasePlugin = "pl.allegro.tech.build.axion-release:1.15.0"
