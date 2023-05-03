@@ -127,9 +127,11 @@ dependencies {
 
 **Step 2.** Add the changes to the top of [CHANGELOG.md](CHANGELOG.md)
 
-**Step 3.** Commit and push
+**Step 3.** Update the version in [`lib/build.gradle.kts`](lib/build.gradle.kts)
 
-**Step 4.** Create a git tag with the version of the CHANGELOG and push
+**Step 4.** Commit and push
+
+**Step 5.** Create a git tag with the version of the CHANGELOG and push
 
 ```
 git tag x.y.z

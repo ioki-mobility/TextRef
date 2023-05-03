@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 plugins {
     alias(libs.plugins.androidGradlePlugin)
     alias(libs.plugins.kotlin)
+    `maven-publish`
 }
 
 kotlinExtension.jvmToolchain(19)
@@ -38,4 +39,25 @@ dependencies {
     androidTestImplementation(libs.androidTest.runner)
     androidTestImplementation(libs.androidTest.extJunit)
     androidTestImplementation(libs.androidTest.assertParcelable)
+}
+
+android.publishing {
+    singleVariant("release") {
+        withSourcesJar()
+        withJavadocJar()
+    }
+}
+
+publishing {
+    publications {
+        register<MavenPublication>("release") {
+            groupId = "com.github.ioki-mobility"
+            artifactId = "TextRef"
+            version = "1.3.1"
+
+            afterEvaluate {
+                from(components["release"])
+            }
+        }
+    }
 }
