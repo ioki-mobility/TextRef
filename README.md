@@ -81,12 +81,13 @@ dependencies {
 
 **Step 1.** Make sure you are on the `main` branch.
 
-**Step 2.** Add the changes to the top of CHANGELOG.md
+**Step 2.** Add the changes to the top of [CHANGELOG.md](CHANGELOG.md)
 
 **Step 3.** Commit and push
 
-**Step 4.** Run the gradle release task:
+**Step 4.** Create a git tag with the version of the CHANGELOG and push
 
 ```
-./gradlew release -Prelease.forceVersion=x.y.z
+git tag x.y.z
+git push origin x.y.z
 ```
