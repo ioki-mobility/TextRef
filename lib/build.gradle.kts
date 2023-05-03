@@ -9,13 +9,13 @@ kotlinExtension.jvmToolchain(19)
 
 android {
     namespace = "com.ioki.textref"
-
-    compileSdk = 30
-
+    compileSdk = 31
     defaultConfig {
         minSdk = 14
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+    buildFeatures.compose = true
+    composeOptions.kotlinCompilerExtensionVersion = libs.tools.android.compose.get().version
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -26,6 +26,7 @@ android {
 dependencies {
     // Implementation
     compileOnly(libs.android.annotation)
+    implementation(libs.bundles.android.compose)
 
     // Test
     testImplementation(libs.test.junit)
