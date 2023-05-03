@@ -10,9 +10,9 @@ kotlinExtension.jvmToolchain(19)
 
 android {
     namespace = "com.ioki.textref"
-    compileSdk = 31
+    compileSdk = 33
     defaultConfig {
-        minSdk = 14
+        minSdk = 21
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildFeatures.compose = true
