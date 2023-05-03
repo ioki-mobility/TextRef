@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
+    alias(libs.plugins.androidGradlePlugin)
+    alias(libs.plugins.kotlin)
 }
 
 kotlinExtension.jvmToolchain(19)

@@ -58,18 +58,60 @@ view.renderUserName(userName)
 
 TextRef is hosted on JitPack. Here's how you include it in your gradle project:
 
-**Step 1.** Add the JitPack repository to your build file:
+**Step 1.** Add the JitPack repository to your `build.gradle[.kts]`:
 
-```groovy
-allprojects {
-    repositories {
-        // Other repositories
-        maven { url 'https://jitpack.io' }
+<details open>
+
+<summary>Kotlin DSL</summary>
+
+```kotlin
+repositories {
+    // Other repositories
+    maven(url = "https://jitpack.io") {
+        content {
+            includeGroup("com.github.ioki-mobility")
+        }
     }
 }
 ```
 
+</details>
+
+<details>
+
+<summary>Groovy DSL</summary>
+
+```groovy
+repositories {
+    // Other repositories
+    maven {
+        url 'https://jitpack.io'
+        content {
+            includeGroup('com.github.ioki-mobility"')
+        }
+    }
+}
+```
+
+</details>
+
 **Step 2.** Add the dependency:
+
+<details open>
+
+<summary>Kotlin DSL</summary>
+
+```kotlin
+dependencies {
+    implementation("com.github.ioki-mobility:TextRef:<latest-version>")
+}
+```
+
+</details>
+
+<details>
+
+<summary>Groovy DSL</summary>
 
 ```groovy
 dependencies {
@@ -77,16 +119,19 @@ dependencies {
 }
 ```
 
+</details>
+
 ## Releasing
 
 **Step 1.** Make sure you are on the `main` branch.
 
-**Step 2.** Add the changes to the top of CHANGELOG.md
+**Step 2.** Add the changes to the top of [CHANGELOG.md](CHANGELOG.md)
 
 **Step 3.** Commit and push
 
-**Step 4.** Run the gradle release task:
+**Step 4.** Create a git tag with the version of the CHANGELOG and push
 
 ```
-./gradlew release -Prelease.forceVersion=x.y.z
+git tag x.y.z
+git push origin x.y.z
 ```
