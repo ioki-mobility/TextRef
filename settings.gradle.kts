@@ -18,4 +18,5 @@ dependencyResolutionManagement {
     }
 }
 
-include(":lib")
+include(":core")
+include(":compose")

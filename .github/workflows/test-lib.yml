@@ -31,14 +31,14 @@ jobs:
           java-version: '17'
 
       - name: Run unit tests
-        run: ./gradlew testDebugUnitTest
+        run: ./gradlew :core:testDebugUnitTest
 
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v3
         if: success() || failure()
         with:
           check_name: Unit Test Report
-          report_paths: 'lib/build/test-results/testDebugUnitTest/TEST-*.xml'
+          report_paths: 'core/build/test-results/testDebugUnitTest/TEST-*.xml'
 
   instrumentationTest:
     runs-on: macos-latest
@@ -70,11 +70,11 @@ jobs:
           arch: x86_64
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           emulator-boot-timeout: 12000
-          script: ./gradlew connectedAndroidTest
+          script: ./gradlew :core:connectedAndroidTest
 
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v3
         if: success() || failure()
         with:
           check_name: Instrumentation Test Report
-          report_paths: 'lib/build/outputs/androidTest-results/connected/flavors/debugAndroidTest/TEST-*.xml'
+          report_paths: 'core/build/outputs/androidTest-results/connected/flavors/debugAndroidTest/TEST-*.xml'
