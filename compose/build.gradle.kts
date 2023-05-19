@@ -40,8 +40,8 @@ val projectVersion = version as String
 publishing {
     publications {
         register<MavenPublication>("release") {
-            groupId = "com.github.ioki-mobility"
-            artifactId = "TextRef-Compose"
+            groupId = "com.github.ioki-mobility.TextRef"
+            artifactId = "compose"
             version = projectVersion
 
             afterEvaluate {
