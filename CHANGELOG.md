@@ -3,7 +3,7 @@
 ## 2.0.0
 
 * Jetpack Compose support
-* New maven coordinates
+* **New maven coordinates**
 Since we support Jetpack Compose, we updated our maven coordinates.
 ```
 - com.ioki.ioki-mobility:TextRef:$version
