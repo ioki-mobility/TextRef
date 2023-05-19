@@ -9,7 +9,7 @@ plugins {
 kotlinExtension.jvmToolchain(19)
 
 android {
-    namespace = "com.ioki.textref"
+    namespace = "com.ioki.textref.compose"
     compileSdk = 33
     defaultConfig {
         minSdk = 21
