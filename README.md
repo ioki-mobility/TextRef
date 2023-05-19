@@ -52,7 +52,19 @@ view.renderUserName(userName)
 
 ## Requirements
 
-* API Level >= 14
+* API Level >= 21
+
+## Jetpack Compose support
+
+Next to the core implementation we also support Jetpack compose:
+
+```kotlin
+@Composable
+fun RenderText(textRef: TextRef, nullableTextRef: TextRef?) {
+    Text(text = textRef(textRef))
+    textRefOrNull(nullableTextRef)?.let { Text(text = it) }
+}
+```
 
 ## Download
 
@@ -69,7 +81,7 @@ repositories {
     // Other repositories
     maven(url = "https://jitpack.io") {
         content {
-            includeGroup("com.github.ioki-mobility")
+            includeGroup("com.github.ioki-mobility.TextRef")
         }
     }
 }
@@ -87,7 +99,7 @@ repositories {
     maven {
         url 'https://jitpack.io'
         content {
-            includeGroup('com.github.ioki-mobility"')
+            includeGroup('com.github.ioki-mobility.TextRef')
         }
     }
 }
@@ -103,7 +115,7 @@ repositories {
 
 ```kotlin
 dependencies {
-    implementation("com.github.ioki-mobility:TextRef:<latest-version>")
+    implementation("com.github.ioki-mobility.TextRef:core:<latest-version>")
 }
 ```
 
@@ -115,7 +127,33 @@ dependencies {
 
 ```groovy
 dependencies {
-    implementation 'com.github.ioki-mobility:TextRef:<latest-version>'
+    implementation 'com.github.ioki-mobility.TextRef:core:<latest-version>'
+}
+```
+
+</details>
+
+**Step 2.1.** Add the optional Jetpack compose dependency:
+
+<details open>
+
+<summary>Kotlin DSL</summary>
+
+```kotlin
+dependencies {
+    implementation("com.github.ioki-mobility.TextRef:compose:<latest-version>")
+}
+```
+
+</details>
+
+<details>
+
+<summary>Groovy DSL</summary>
+
+```groovy
+dependencies {
+    implementation 'com.github.ioki-mobility.TextRef:compose:<latest-version>'
 }
 ```
 
@@ -127,7 +165,7 @@ dependencies {
 
 **Step 2.** Add the changes to the top of [CHANGELOG.md](CHANGELOG.md)
 
-**Step 3.** Update the version in [`lib/build.gradle.kts`](lib/build.gradle.kts)
+**Step 3.** Update the version in [`build.gradle.kts`](build.gradle.kts)
 
 **Step 4.** Commit and push
 

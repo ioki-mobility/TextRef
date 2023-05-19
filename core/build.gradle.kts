@@ -15,8 +15,6 @@ android {
         minSdk = 21
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-    buildFeatures.compose = true
-    composeOptions.kotlinCompilerExtensionVersion = libs.tools.android.compose.get().version
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -27,7 +25,6 @@ android {
 dependencies {
     // Implementation
     compileOnly(libs.android.annotation)
-    implementation(libs.bundles.android.compose)
 
     // Test
     testImplementation(libs.test.junit)
@@ -48,12 +45,13 @@ android.publishing {
     }
 }
 
+val projectVersion = version as String
 publishing {
     publications {
         register<MavenPublication>("release") {
-            groupId = "com.github.ioki-mobility"
-            artifactId = "TextRef"
-            version = "1.3.1"
+            groupId = "com.github.ioki-mobility.TextRef"
+            artifactId = "core"
+            version = projectVersion
 
             afterEvaluate {
                 from(components["release"])
