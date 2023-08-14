@@ -1,7 +1,7 @@
 [libraries]
 android-annotation = "androidx.annotation:annotation:1.6.0"
 android-compose-runtime = "androidx.compose.runtime:runtime:1.5.0"
-android-compose-ui = "androidx.compose.ui:ui:1.4.3"
+android-compose-ui = "androidx.compose.ui:ui:1.5.0"
 tools-android-compose = "androidx.compose.compiler:compiler:1.5.1"
 test-junit = "junit:junit:4.13.2"
 test-assertj = "org.assertj:assertj-core:3.24.2"
