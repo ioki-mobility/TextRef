@@ -16,5 +16,5 @@ android-compose = ["android-compose-runtime", "android-compose-ui"]
 
 [plugins]
 androidGradlePlugin = "com.android.library:8.1.0"
-kotlin = "org.jetbrains.kotlin.android:1.9.0"
+kotlin = "org.jetbrains.kotlin.android:1.9.10"
 wrapperUpgrade = "org.gradle.wrapper-upgrade:0.11.2"
