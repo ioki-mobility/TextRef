@@ -1,5 +1,5 @@
 [libraries]
-android-annotation = "androidx.annotation:annotation:1.6.0"
+android-annotation = "androidx.annotation:annotation:1.7.0"
 android-compose-runtime = "androidx.compose.runtime:runtime:1.5.0"
 android-compose-ui = "androidx.compose.ui:ui:1.5.0"
 tools-android-compose = "androidx.compose.compiler:compiler:1.5.3"
