@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.1.0
+
+**Maintenance release**
+* Update a lot of dependencies
+* Add Gradle Wrapper Upgrade plugin
+* Update Gradle Wrapper
+
+Diff: [`2.0.0...2.1.0`](https://github.com/ioki-mobility/TextRef/compare/2.0.0...2.1.0)
+
 ## 2.0.0
 
 * Jetpack Compose support
