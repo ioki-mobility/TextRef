@@ -53,6 +53,25 @@ publishing {
             artifactId = "core"
             version = projectVersion
 
+            pom {
+                url.set("https://github.com/ioki-mobility/TextRef")
+                licenses {
+                    license {
+                        name.set("MIT License")
+                        url.set("https://github.com/ioki-mobility/TextRef/blob/main/LICENSE.md")
+                    }
+                }
+                organization {
+                    name.set("ioki")
+                    url.set("https://ioki.com")
+                }
+                scm {
+                    url.set("https://github.com/ioki-mobility/TextRef")
+                    connection.set("https://github.com/ioki-mobility/TextRef.git")
+                    developerConnection.set("git@github.com:ioki-mobility/TextRef.git")
+                }
+            }
+
             afterEvaluate {
                 from(components["release"])
             }
