@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.2.0
+
+* Add license to POM file
+* Upgrade Jetpack Compose (1.5.2)
+* Upgrade Android Gradle Plugin (8.1.2)
+
+Diff: [`2.1.0...2.2.0`](https://github.com/ioki-mobility/TextRef/compare/2.1.0...2.2.0)
+
 ## 2.1.0
 
 **Maintenance release**
