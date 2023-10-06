@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.1
+
+* Use SDPX license identifier for license in the POM file
+
+Diff: [`2.2.0...2.2.1`](https://github.com/ioki-mobility/TextRef/compare/2.2.0...2.2.1)
+
 ## 2.2.0
 
 * Add license to POM file
