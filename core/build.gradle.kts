@@ -57,7 +57,7 @@ publishing {
                 url.set("https://github.com/ioki-mobility/TextRef")
                 licenses {
                     license {
-                        name.set("MIT License")
+                        name.set("MIT")
                         url.set("https://github.com/ioki-mobility/TextRef/blob/main/LICENSE.md")
                     }
                 }
