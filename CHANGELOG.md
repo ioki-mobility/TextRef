@@ -1,8 +1,16 @@
 # Changelog
 
+## 2.2.2
+
+* Use SPDX license URL for license in the POM file
+* Bump compose dependencies to 1.5.3
+* Bump mockito dependency to 5.6.0
+
+Diff: [`2.2.1...2.2.2`](https://github.com/ioki-mobility/TextRef/compare/2.2.1...2.2.2)
+
 ## 2.2.1
 
-* Use SDPX license identifier for license in the POM file
+* Use SPDX license identifier for license in the POM file
 
 Diff: [`2.2.0...2.2.1`](https://github.com/ioki-mobility/TextRef/compare/2.2.0...2.2.1)
 
