@@ -49,7 +49,7 @@ publishing {
                 licenses {
                     license {
                         name.set("MIT")
-                        url.set("https://github.com/ioki-mobility/TextRef/blob/main/LICENSE.md")
+                        url.set("https://opensource.org/licenses/MIT")
                     }
                 }
                 organization {
