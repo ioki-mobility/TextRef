@@ -10,6 +10,11 @@ updates:
         interval: "weekly"
       registries:
         - maven-google
+      groups:
+        kotlin-compose:
+          patterns:
+            - "org.jetbrains.kotlin.android*"
+            - "androidx.compose.compiler*"
 
     - package-ecosystem: "github-actions"
       directory: "/"
