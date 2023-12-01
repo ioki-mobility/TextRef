@@ -68,96 +68,31 @@ fun RenderText(textRef: TextRef, nullableTextRef: TextRef?) {
 
 ## Download
 
-TextRef is hosted on JitPack. Here's how you include it in your gradle project:
+TextRef is hosted on Maven Central. Here's how you include it in your gradle project:
 
-**Step 1.** Add the JitPack repository to your `build.gradle[.kts]`:
-
-<details open>
-
-<summary>Kotlin DSL</summary>
+**Step 1.** Add the Maven Central repository to your `build.gradle[.kts]`:
 
 ```kotlin
 repositories {
-    // Other repositories
-    maven(url = "https://jitpack.io") {
-        content {
-            includeGroup("com.github.ioki-mobility.TextRef")
-        }
-    }
+    mavenCentral()
 }
 ```
-
-</details>
-
-<details>
-
-<summary>Groovy DSL</summary>
-
-```groovy
-repositories {
-    // Other repositories
-    maven {
-        url 'https://jitpack.io'
-        content {
-            includeGroup('com.github.ioki-mobility.TextRef')
-        }
-    }
-}
-```
-
-</details>
 
 **Step 2.** Add the dependency:
 
-<details open>
+```kotlin
+dependencies {
+    implementation("com.ioki.textref:textref:<latest-version>")
+}
+```
 
-<summary>Kotlin DSL</summary>
+**Step 2.1.** Add the optional **Jetpack compose** dependency:
 
 ```kotlin
 dependencies {
-    implementation("com.github.ioki-mobility.TextRef:core:<latest-version>")
+    implementation("com.ioki.textref:compose:<latest-version>")
 }
 ```
-
-</details>
-
-<details>
-
-<summary>Groovy DSL</summary>
-
-```groovy
-dependencies {
-    implementation 'com.github.ioki-mobility.TextRef:core:<latest-version>'
-}
-```
-
-</details>
-
-**Step 2.1.** Add the optional Jetpack compose dependency:
-
-<details open>
-
-<summary>Kotlin DSL</summary>
-
-```kotlin
-dependencies {
-    implementation("com.github.ioki-mobility.TextRef:compose:<latest-version>")
-}
-```
-
-</details>
-
-<details>
-
-<summary>Groovy DSL</summary>
-
-```groovy
-dependencies {
-    implementation 'com.github.ioki-mobility.TextRef:compose:<latest-version>'
-}
-```
-
-</details>
 
 ## Releasing
 
@@ -167,11 +102,23 @@ dependencies {
 
 **Step 3.** Update the version in [`build.gradle.kts`](build.gradle.kts)
 
-**Step 4.** Commit and push
+**Step 4.** Commit
 
-**Step 5.** Create a git tag with the version of the CHANGELOG and push
+```bash
+git commit -m "Prepare next release" .
+```
+
+**Step 5.** Create a git tag with the version of the CHANGELOG and push the tag
 
 ```
 git tag x.y.z
 git push origin x.y.z
+```
+
+**Step 6.** Update the version [`build.gradle.kts`](build.gradle.kts) to the **next patch version** +`-SNAPSHOT`
+
+**Step 7.** Commit and push the `main` branch
+
+```bash
+git push origin main
 ```
