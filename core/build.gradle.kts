@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.androidGradlePlugin)
     alias(libs.plugins.kotlin)
     `maven-publish`
+    signing
 }
 
 kotlinExtension.jvmToolchain(19)
@@ -49,11 +50,13 @@ val projectVersion = version as String
 publishing {
     publications {
         register<MavenPublication>("release") {
-            groupId = "com.github.ioki-mobility.TextRef"
-            artifactId = "core"
+            groupId = "com.ioki.textref"
+            artifactId = "textref"
             version = projectVersion
 
             pom {
+                name.set("TextRef")
+                description.set("An abstraction over Android strings with formatting support")
                 url.set("https://github.com/ioki-mobility/TextRef")
                 licenses {
                     license {
@@ -65,10 +68,19 @@ publishing {
                     name.set("ioki")
                     url.set("https://ioki.com")
                 }
+                developers {
+                    developer {
+                        name.set("Stefan 'StefMa' M.")
+                        email.set("StefMaDev@outlook.com")
+                        url.set("https://StefMa.guru")
+                        organization.set("ioki")
+                        organizationUrl.set("https://ioki.com")
+                    }
+                }
                 scm {
                     url.set("https://github.com/ioki-mobility/TextRef")
-                    connection.set("https://github.com/ioki-mobility/TextRef.git")
-                    developerConnection.set("git@github.com:ioki-mobility/TextRef.git")
+                    connection.set("scm:git:git://github.com/ioki-mobility/TextRef.git")
+                    developerConnection.set("scm:git:ssh://git@github.com:ioki-mobility/TextRef.git")
                 }
             }
 
@@ -77,4 +89,28 @@ publishing {
             }
         }
     }
+
+    repositories {
+        maven("https://s01.oss.sonatype.org/content/repositories/snapshots/") {
+            name = "SonatypeSnapshot"
+            credentials {
+                username = System.getenv("SONATYPE_USER")
+                password = System.getenv("SONATYPE_PASSWORD")
+            }
+        }
+        maven("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") {
+            name = "SonatypeStaging"
+            credentials {
+                username = System.getenv("SONATYPE_USER")
+                password = System.getenv("SONATYPE_PASSWORD")
+            }
+        }
+    }
+}
+
+signing {
+    val signingKey = System.getenv("GPG_SIGNING_KEY")
+    val signingPassword = System.getenv("GPG_SIGNING_PASSWORD")
+    useInMemoryPgpKeys(signingKey, signingPassword)
+    sign(publishing.publications)
 }
