@@ -88,4 +88,21 @@ publishing {
             }
         }
     }
+
+    repositories {
+        maven("https://s01.oss.sonatype.org/content/repositories/snapshots/") {
+            name = "SonatypeSnapshot"
+            credentials {
+                username = System.getenv("SONATYPE_USER")
+                password = System.getenv("SONATYPE_PASSWORD")
+            }
+        }
+        maven("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") {
+            name = "SonatypeStaging"
+            credentials {
+                username = System.getenv("SONATYPE_USER")
+                password = System.getenv("SONATYPE_PASSWORD")
+            }
+        }
+    }
 }
