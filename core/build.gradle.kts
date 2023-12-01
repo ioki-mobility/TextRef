@@ -49,8 +49,8 @@ val projectVersion = version as String
 publishing {
     publications {
         register<MavenPublication>("release") {
-            groupId = "com.github.ioki-mobility.TextRef"
-            artifactId = "core"
+            groupId = "com.ioki.textref"
+            artifactId = "textref"
             version = projectVersion
 
             pom {
