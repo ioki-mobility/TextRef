@@ -45,6 +45,8 @@ publishing {
             version = projectVersion
 
             pom {
+                name.set("TextRef")
+                description.set("An abstraction over Android strings with formatting support")
                 url.set("https://github.com/ioki-mobility/TextRef")
                 licenses {
                     license {
@@ -56,10 +58,19 @@ publishing {
                     name.set("ioki")
                     url.set("https://ioki.com")
                 }
+                developers {
+                    developer {
+                        name.set("Stefan 'StefMa' M.")
+                        email.set("StefMaDev@outlook.com")
+                        url.set("https://StefMa.guru")
+                        organization.set("ioki")
+                        organizationUrl.set("https://ioki.com")
+                    }
+                }
                 scm {
                     url.set("https://github.com/ioki-mobility/TextRef")
-                    connection.set("https://github.com/ioki-mobility/TextRef.git")
-                    developerConnection.set("git@github.com:ioki-mobility/TextRef.git")
+                    connection.set("scm:git:git://github.com/ioki-mobility/TextRef.git")
+                    developerConnection.set("scm:git:ssh://git@github.com:ioki-mobility/TextRef.git")
                 }
             }
 
