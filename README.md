@@ -1,8 +1,8 @@
 # TextRef
 
 [![CI](https://github.com/ioki-mobility/TextRef/actions/workflows/test-lib.yml/badge.svg)](https://github.com/ioki-mobility/TextRef/actions/workflows/test-lib.yml)
-[![Jitpack](https://jitpack.io/v/ioki-mobility/TextRef.svg)](https://jitpack.io/#ioki-mobility/TextRef)
-[![MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ioki-mobility/TextRef/blob/master/LICENSE.md)
+[![Maven Central](https://img.shields.io/maven-central/v/com.ioki.textref/textref?labelColor=%2324292E&color=%233246c8)](https://central.sonatype.com/namespace/com.ioki.textref)
+[![MIT](https://img.shields.io/badge/license-MIT-blue.svg?labelColor=%2324292E&color=%23d11064)](https://github.com/ioki-mobility/TextRef/blob/master/LICENSE.md)
 
 ## What?
 
@@ -115,7 +115,7 @@ git tag x.y.z
 git push origin x.y.z
 ```
 
-**Step 6.** Update the version [`build.gradle.kts`](build.gradle.kts) to the **next patch version** +`-SNAPSHOT`
+**Step 6.** Update the version [`build.gradle.kts`](build.gradle.kts) to the **next minor version** +`-SNAPSHOT`
 
 **Step 7.** Commit and push the `main` branch
 
