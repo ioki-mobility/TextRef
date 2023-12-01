@@ -1,4 +1,4 @@
-name: 'Publish Maven Central Staging'
+name: 'Publish Snapshot'
 
 on:
   push:
@@ -18,5 +18,5 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Publish to Sonatype Staging
+      - name: Publish to Sonatype Snapshot
         run: ./gradlew publishAllPublicationsToSonatypeSnapshotRepository
