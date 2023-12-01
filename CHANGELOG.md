@@ -1,5 +1,31 @@
 # Changelog
 
+## 3.0.0
+
+**New maven coordinates**
+Since we are publishing to Maven Central, we updated our maven coordinates.
+```diff
+-  com.ioki.ioki-mobility.TextRef:core:$version
++  com.ioki.textref:textref:$version
+-  com.ioki.ioki-mobility.TextRef:compose:$version // Optional
++  com.ioki.textref:compose:$version // Optional
+```
+
+You also might want to adjust your repository declaration:
+```diff
+repositories {
+-  maven(url = "https://jitpack.io")
++  mavenCentral()
+}
+```
+
+* Bump kotlin dependency to 1.9.20
+* Bump AGP dependency to 8.1.4
+* Bump mockito dependency to 5.7.0
+* Bump compose dependency to 1.5.4
+
+Diff: [`2.2.2...3.0.0`](https://github.com/ioki-mobility/TextRef/compare/2.2.2...3.0.0)
+
 ## 2.2.2
 
 * Use SPDX license URL for license in the POM file
@@ -36,7 +62,7 @@ Diff: [`2.0.0...2.1.0`](https://github.com/ioki-mobility/TextRef/compare/2.0.0..
 * Jetpack Compose support
 * **New maven coordinates**
 Since we support Jetpack Compose, we updated our maven coordinates.
-```
+```diff
 - com.ioki.ioki-mobility:TextRef:$version
 + com.ioki.ioki-mobility.TextRef:core:$version
 + com.ioki.ioki-mobility.TextRef:compose:$version // Optional
