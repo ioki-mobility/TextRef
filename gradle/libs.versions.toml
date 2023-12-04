@@ -15,5 +15,5 @@ androidTest-assertParcelable = "com.artemzin.assert-parcelable:assert-parcelable
 android-compose = ["android-compose-runtime", "android-compose-ui"]
 
 [plugins]
-androidGradlePlugin = "com.android.library:8.1.4"
+androidGradlePlugin = "com.android.library:8.2.0"
 kotlin = "org.jetbrains.kotlin.android:1.9.20"
