@@ -80,6 +80,16 @@ repositories {
 }
 ```
 
+<details>
+    <summary>For the snapshot version:</summary>
+
+```kotlin
+repositories {
+    maven(url = "https://s01.oss.sonatype.org/content/repositories/snapshots")
+}
+```
+</details>
+
 **Step 2.** Add the dependency:
 
 ```kotlin
