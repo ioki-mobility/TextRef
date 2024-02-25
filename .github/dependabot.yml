@@ -8,8 +8,6 @@ updates:
       directory: "/"
       schedule:
         interval: "weekly"
-      registries:
-        - maven-google
       groups:
         kotlin-compose:
           patterns:
@@ -20,11 +18,3 @@ updates:
       directory: "/"
       schedule:
         interval: "weekly"
-
-# This is only a workaround as long as
-# https://github.com/dependabot/dependabot-core/pull/7260
-# is not merged
-registries:
-  maven-google:
-    type: maven-repository
-    url: "https://dl.google.com/dl/android/maven2/"
