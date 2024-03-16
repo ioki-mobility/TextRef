@@ -1,5 +1,5 @@
 [versions]
-composeVersion = "1.6.2"
+composeVersion = "1.6.3"
 
 [libraries]
 android-annotation = "androidx.annotation:annotation:1.7.1"
