@@ -5,7 +5,7 @@ composeVersion = "1.6.4"
 android-annotation = "androidx.annotation:annotation:1.7.1"
 android-compose-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "composeVersion" }
 android-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "composeVersion" }
-tools-android-compose = "androidx.compose.compiler:compiler:1.5.10"
+tools-android-compose = "androidx.compose.compiler:compiler:1.5.11"
 test-junit = "junit:junit:4.13.2"
 test-assertj = "org.assertj:assertj-core:3.25.3"
 test-mockito = "org.mockito:mockito-core:5.11.0"
@@ -19,4 +19,4 @@ android-compose = ["android-compose-runtime", "android-compose-ui"]
 
 [plugins]
 androidGradlePlugin = "com.android.library:8.3.1"
-kotlin = "org.jetbrains.kotlin.android:1.9.22"
+kotlin = "org.jetbrains.kotlin.android:1.9.23"
