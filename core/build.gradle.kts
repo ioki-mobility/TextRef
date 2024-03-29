@@ -7,7 +7,7 @@ plugins {
     signing
 }
 
-kotlinExtension.jvmToolchain(2)
+kotlinExtension.jvmToolchain(20)
 
 android {
     namespace = "com.ioki.textref"
