@@ -25,7 +25,6 @@ android {
 }
 
 dependencies {
-    // Implementation
     api(project(":core"))
     api(libs.bundles.android.compose)
 }
