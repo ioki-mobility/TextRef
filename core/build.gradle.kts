@@ -7,7 +7,7 @@ plugins {
     signing
 }
 
-kotlinExtension.jvmToolchain(8)
+kotlinExtension.jvmToolchain(11)
 
 android {
     namespace = "com.ioki.textref"
@@ -18,10 +18,10 @@ android {
     }
 
     compileOptions { 
-         sourceCompatibility = JavaVersion.VERSION_17
-         targetCompatibility = JavaVersion.VERSION_17
+         sourceCompatibility = JavaVersion.VERSION_19
+         targetCompatibility = JavaVersion.VERSION_19
      } 
-     kotlinOptions { jvmTarget = "17" }
+     kotlinOptions { jvmTarget = "19" }
 }
 
 dependencies {
