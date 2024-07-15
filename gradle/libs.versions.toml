@@ -19,4 +19,4 @@ android-compose = ["android-compose-runtime", "android-compose-ui"]
 
 [plugins]
 androidGradlePlugin = "com.android.library:8.5.0"
-kotlin = "org.jetbrains.kotlin.android:1.9.24"
+kotlin = "org.jetbrains.kotlin.android:2.0.0"
