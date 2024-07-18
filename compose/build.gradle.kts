@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 plugins {
     alias(libs.plugins.androidGradlePlugin)
     alias(libs.plugins.kotlin)
+    alias(libs.plugins.compose)
     `maven-publish`
     signing
 }
@@ -16,7 +17,6 @@ android {
         minSdk = 21
     }
     buildFeatures.compose = true
-    composeOptions.kotlinCompilerExtensionVersion = libs.tools.android.compose.get().version
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
