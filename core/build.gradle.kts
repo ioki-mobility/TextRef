@@ -33,7 +33,6 @@ dependencies {
     testImplementation(libs.test.mockito)
 
     // Android Test
-    androidTestImplementation(libs.androidTest.junit)
     androidTestImplementation(libs.androidTest.runner)
     androidTestImplementation(libs.androidTest.extJunit)
     androidTestImplementation(libs.androidTest.assertParcelable)
