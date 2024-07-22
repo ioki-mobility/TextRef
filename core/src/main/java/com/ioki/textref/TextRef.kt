@@ -13,35 +13,10 @@ import java.util.Arrays
  *
  * Use [resolve] to get a [String] out of it.
  */
-class TextRef
-private constructor(
+class TextRef private constructor(
     internal val value: Any,
     internal val args: Array<out Any>
 ) : Parcelable {
-
-    /**
-     * Creates a new TextRef from a [String]. Supports formatting using [java.util.Formatter].
-     *
-     * @param string The string used to create the TextRef
-     * @param args Format args used to format the string
-     */
-    @Deprecated(
-        "Use factory function instead",
-        ReplaceWith("TextRef.string(string, *args)", "com.ioki.textref.TextRef")
-    )
-    constructor(string: String, vararg args: Any) : this(string as Any, args)
-
-    /**
-     * Creates a new TextRef from an Android [StringRes] ID. Supports formatting using [java.util.Formatter].
-     *
-     * @param id The String resource ID used to create the TextRef
-     * @param args Format args used to format the string
-     */
-    @Deprecated(
-        "Use factory function instead",
-        ReplaceWith("TextRef.stringRes(id, *args)", "com.ioki.textref.TextRef")
-    )
-    constructor(@StringRes id: Int, vararg args: Any) : this(id as Any, args)
 
     /**
      * Resolves the contents of the TextRef to a [String].
