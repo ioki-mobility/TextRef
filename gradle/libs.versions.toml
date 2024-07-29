@@ -3,7 +3,7 @@ composeVersion = "1.6.8"
 kotlinVersion = "2.0.0"
 
 [libraries]
-android-annotation = "androidx.annotation:annotation:1.8.0"
+android-annotation = "androidx.annotation:annotation:1.8.1"
 android-compose-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "composeVersion" }
 android-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "composeVersion" }
 test-junit = "junit:junit:4.13.2"
