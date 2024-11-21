@@ -6,6 +6,9 @@ on:
     branches:
       - main
 
+permissions:
+  checks: write
+
 jobs:
   unitTest:
     runs-on: ubuntu-latest
@@ -34,7 +37,7 @@ jobs:
         run: ./gradlew :core:testDebugUnitTest
 
       - name: Publish Test Report
-        uses: mikepenz/action-junit-report@v4
+        uses: mikepenz/action-junit-report@v5
         if: success() || failure()
         with:
           check_name: Unit Test Report
@@ -103,8 +106,8 @@ jobs:
           script: ./gradlew :core:connectedAndroidTest
 
       - name: Publish Test Report
-        uses: mikepenz/action-junit-report@v4
+        uses: mikepenz/action-junit-report@v5
         if: success() || failure()
         with:
           check_name: Instrumentation Test Report
-          report_paths: 'core/build/outputs/androidTest-results/connected/flavors/debugAndroidTest/TEST-*.xml'
+          report_paths: 'core/build/outputs/androidTest-results/connected/debug/TEST-*.xml'
