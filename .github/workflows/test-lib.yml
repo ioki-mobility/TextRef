@@ -110,4 +110,4 @@ jobs:
         if: success() || failure()
         with:
           check_name: Instrumentation Test Report
-          report_paths: 'core/build/outputs/androidTest-results/connected/flavors/debugAndroidTest/TEST-*.xml'
+          report_paths: 'core/build/outputs/androidTest-results/connected/debug/TEST-*.xml'
