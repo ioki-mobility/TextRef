@@ -7,7 +7,7 @@ android-annotation = "androidx.annotation:annotation:1.9.1"
 android-compose-runtime = { module = "androidx.compose.runtime:runtime", version.ref = "composeVersion" }
 android-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "composeVersion" }
 test-junit = "junit:junit:4.13.2"
-test-assertj = "org.assertj:assertj-core:3.27.2"
+test-assertj = "org.assertj:assertj-core:3.27.3"
 test-mockito = "org.mockito:mockito-core:5.16.0"
 androidTest-runner = "androidx.test:runner:1.6.2"
 androidTest-extJunit = "androidx.test.ext:junit:1.2.1"
