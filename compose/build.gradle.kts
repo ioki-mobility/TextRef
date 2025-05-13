@@ -1,3 +1,7 @@
+@file:OptIn(ExperimentalEncodingApi::class)
+
+import kotlin.io.encoding.Base64
+import kotlin.io.encoding.ExperimentalEncodingApi
 import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 
 plugins {
@@ -35,6 +39,10 @@ android.publishing {
         withJavadocJar()
     }
 }
+
+val base64EncodedBearerToken = Base64.encode(
+    "${System.getenv("SONATYPE_USER")}:${System.getenv("SONATYPE_PASSWORD")}".toByteArray(),
+)
 
 val projectVersion = version as String
 publishing {
@@ -103,4 +111,19 @@ signing {
     val signingPassword = System.getenv("GPG_SIGNING_PASSWORD")
     useInMemoryPgpKeys(signingKey, signingPassword)
     sign(publishing.publications)
+}
+
+tasks.register<Exec>("moveOssrhStagingToCentralPortal") {
+    group = "publishing"
+    description = "Runs after publishAllPublicationsToSonatypeStagingRepository to move the artifacts to the central portal"
+
+    shouldRunAfter("publishAllPublicationsToSonatypeStagingRepository")
+
+    commandLine = listOf(
+        "curl",
+        "-f",
+        "-X", "POST",
+        "-H", "Authorization: Bearer $base64EncodedBearerToken",
+        "https://ossrh-staging-api.central.sonatype.com/manual/upload/defaultRepository/com.ioki",
+    )
 }
