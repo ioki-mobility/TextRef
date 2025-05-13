@@ -1,8 +1,7 @@
 # TextRef
 
 [![CI](https://github.com/ioki-mobility/TextRef/actions/workflows/test-lib.yml/badge.svg)](https://github.com/ioki-mobility/TextRef/actions/workflows/test-lib.yml)
-[![Maven Central](https://img.shields.io/maven-central/v/com.ioki.textref/textref?labelColor=%2324292E&color=%233246c8)](https://central.sonatype.com/namespace/com.ioki.textref)
-<!-- Disabled because of: https://github.com/badges/shields/pull/10997
+[![Maven Central](https://img.shields.io/maven-central/v/com.ioki.textref/textref?labelColor=%2324292E&color=%233246c8)](https://central.sonatype.com/namespace/com.ioki.textref) <!-- Disabled because of: https://github.com/badges/shields/pull/10997
 [![Snapshot](https://img.shields.io/nexus/s/com.ioki.textref/textref?labelColor=%2324292E&color=%234f78ff&server=https://s01.oss.sonatype.org)](https://s01.oss.sonatype.org/content/repositories/snapshots/com/ioki/textref/) -->
 [![javadoc](https://javadoc.io/badge2/com.ioki.textref/textref/javadoc.svg?labelColor=%2324292E&color=%236eaaff)](https://javadoc.io/doc/com.ioki.textref) 
 [![MIT](https://img.shields.io/badge/license-MIT-blue.svg?labelColor=%2324292E&color=%23d11064)](https://github.com/ioki-mobility/TextRef/blob/master/LICENSE.md)
@@ -86,7 +85,7 @@ repositories {
 
 ```kotlin
 repositories {
-    maven(url = "https://s01.oss.sonatype.org/content/repositories/snapshots")
+    maven(url = "https://central.sonatype.com/repository/maven-snapshots/")
 }
 ```
 </details>
