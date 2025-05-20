@@ -25,4 +25,4 @@ jobs:
             java-version: '17'
 
       - name: Publish to Sonatype Staging
-        run: ./gradlew publishAllPublicationsToSonatypeStagingRepository
+        run: ./gradlew publishAggregationToCentralPortal -PGPG_SIGNING_REQUIRED

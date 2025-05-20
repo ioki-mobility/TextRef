@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
-
 plugins {
     alias(libs.plugins.androidGradlePlugin)
     alias(libs.plugins.kotlin)
@@ -7,7 +5,7 @@ plugins {
     signing
 }
 
-kotlinExtension.jvmToolchain(19)
+kotlin.jvmToolchain(19)
 
 android {
     namespace = "com.ioki.textref"
@@ -45,13 +43,10 @@ android.publishing {
     }
 }
 
-val projectVersion = version as String
 publishing {
     publications {
         register<MavenPublication>("release") {
-            groupId = "com.ioki.textref"
             artifactId = "textref"
-            version = projectVersion
 
             pom {
                 name.set("TextRef")
@@ -90,15 +85,8 @@ publishing {
     }
 
     repositories {
-        maven("https://s01.oss.sonatype.org/content/repositories/snapshots/") {
+        maven("https://central.sonatype.com/repository/maven-snapshots/") {
             name = "SonatypeSnapshot"
-            credentials {
-                username = System.getenv("SONATYPE_USER")
-                password = System.getenv("SONATYPE_PASSWORD")
-            }
-        }
-        maven("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") {
-            name = "SonatypeStaging"
             credentials {
                 username = System.getenv("SONATYPE_USER")
                 password = System.getenv("SONATYPE_PASSWORD")
@@ -110,6 +98,7 @@ publishing {
 signing {
     val signingKey = System.getenv("GPG_SIGNING_KEY")
     val signingPassword = System.getenv("GPG_SIGNING_PASSWORD")
-    useInMemoryPgpKeys(signingKey, signingPassword)
+    isRequired = hasProperty("GPG_SIGNING_REQUIRED")
+    if (isRequired) useInMemoryPgpKeys(signingKey, signingPassword)
     sign(publishing.publications)
 }

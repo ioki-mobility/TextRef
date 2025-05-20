@@ -25,4 +25,4 @@ jobs:
             java-version: '17'
 
       - name: Publish to Sonatype Snapshot
-        run: ./gradlew publishAllPublicationsToSonatypeSnapshotRepository
+        run: ./gradlew publishAllPublicationsToSonatypeSnapshotRepository -PGPG_SIGNING_REQUIRED
