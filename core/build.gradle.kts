@@ -1,9 +1,3 @@
-@file:OptIn(ExperimentalEncodingApi::class)
-
-import kotlin.io.encoding.Base64
-import kotlin.io.encoding.ExperimentalEncodingApi
-import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
-
 plugins {
     alias(libs.plugins.androidGradlePlugin)
     alias(libs.plugins.kotlin)
@@ -49,17 +43,10 @@ android.publishing {
     }
 }
 
-val base64EncodedBearerToken = Base64.encode(
-    "${System.getenv("SONATYPE_USER")}:${System.getenv("SONATYPE_PASSWORD")}".toByteArray(),
-)
-
-val projectVersion = version as String
 publishing {
     publications {
         register<MavenPublication>("release") {
-            groupId = "com.ioki.textref"
             artifactId = "textref"
-            version = projectVersion
 
             pom {
                 name.set("TextRef")
@@ -105,16 +92,6 @@ publishing {
                 password = System.getenv("SONATYPE_PASSWORD")
             }
         }
-        maven("https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/") {
-            name = "SonatypeStaging"
-            credentials(HttpHeaderCredentials::class) {
-                name = "Authorization"
-                value = "Bearer $base64EncodedBearerToken"
-            }
-            authentication {
-                create<HttpHeaderAuthentication>("header")
-            }
-        }
     }
 }
 
@@ -123,19 +100,4 @@ signing {
     val signingPassword = System.getenv("GPG_SIGNING_PASSWORD")
     useInMemoryPgpKeys(signingKey, signingPassword)
     sign(publishing.publications)
-}
-
-tasks.register<Exec>("moveOssrhStagingToCentralPortal") {
-    group = "publishing"
-    description = "Runs after publishAllPublicationsToSonatypeStagingRepository to move the artifacts to the central portal"
-
-    shouldRunAfter("publishAllPublicationsToSonatypeStagingRepository")
-
-    commandLine = listOf(
-        "curl",
-        "-f",
-        "-X", "POST",
-        "-H", "Authorization: Bearer $base64EncodedBearerToken",
-        "https://ossrh-staging-api.central.sonatype.com/manual/upload/defaultRepository/com.ioki",
-    )
 }
