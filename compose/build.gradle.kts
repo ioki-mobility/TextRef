@@ -6,7 +6,7 @@ plugins {
     signing
 }
 
-kotlinExtension.jvmToolchain(19)
+kotlin.jvmToolchain(19)
 
 android {
     namespace = "com.ioki.textref.compose"
