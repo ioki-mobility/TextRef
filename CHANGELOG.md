@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.1.0
+
+* New maven repository for snapshot versions
+* Remove deprecated constructors (see https://github.com/ioki-mobility/TextRef/pull/164)
+* A lot of dependency updates
+
+Diff: [`3.0.0...3.1.0`](https://github.com/ioki-mobility/TextRef/compare/3.0.0...3.1.0)
+
 ## 3.0.0
 
 **New maven coordinates**
