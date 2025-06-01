@@ -1,5 +1,5 @@
 [versions]
-composeVersion = "1.8.1"
+composeVersion = "1.8.2"
 kotlinVersion = "2.1.21"
 
 [libraries]
