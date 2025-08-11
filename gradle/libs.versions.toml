@@ -20,4 +20,4 @@ android-compose = ["android-compose-runtime", "android-compose-ui"]
 androidGradlePlugin = "com.android.library:8.11.1"
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinVersion" }
 compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlinVersion" }
-nmcpAggregation = { id = "com.gradleup.nmcp.aggregation", version = "0.1.5" }
+nmcpAggregation = { id = "com.gradleup.nmcp.aggregation", version = "1.0.3" }
