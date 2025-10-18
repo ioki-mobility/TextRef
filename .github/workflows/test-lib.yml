@@ -28,7 +28,7 @@ jobs:
           key: gradle-caches-unit-test-v0-${{ hashFiles('gradle/libs.versions.toml', '**/build.gradle.kts', 'build.gradle.kts', 'settings.gradle.kts', 'gradle/wrapper/gradle-wrapper.properties') }}
 
       - name: Setup JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'adopt'
           java-version: '17'
@@ -61,7 +61,7 @@ jobs:
           key: gradle-caches-unit-test-v0-${{ hashFiles('gradle/libs.versions.toml', '**/build.gradle.kts', 'build.gradle.kts', 'settings.gradle.kts', 'gradle/wrapper/gradle-wrapper.properties') }}
 
       - name: Setup JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'adopt'
           java-version: '17'
@@ -87,7 +87,7 @@ jobs:
           key: gradle-caches-instrumentation-test-v0-${{ hashFiles('gradle/libs.versions.toml', '**/build.gradle.kts', 'build.gradle.kts', 'settings.gradle.kts', 'gradle/wrapper/gradle-wrapper.properties') }}
 
       - name: Setup JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'adopt'
           java-version: '17'
