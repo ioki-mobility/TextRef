@@ -17,7 +17,7 @@ androidTest-assertParcelable = "com.artemzin.assert-parcelable:assert-parcelable
 android-compose = ["android-compose-runtime", "android-compose-ui"]
 
 [plugins]
-androidGradlePlugin = "com.android.library:8.11.1"
+androidGradlePlugin = "com.android.library:9.0.1"
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinVersion" }
 compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlinVersion" }
 nmcpAggregation = { id = "com.gradleup.nmcp.aggregation", version = "1.4.4" }
