@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.androidGradlePlugin)
-    alias(libs.plugins.kotlin)
     alias(libs.plugins.compose)
     `maven-publish`
     signing
@@ -10,7 +9,7 @@ kotlin.jvmToolchain(19)
 
 android {
     namespace = "com.ioki.textref.compose"
-    compileSdk = 33
+    compileSdk = 35
     defaultConfig {
         minSdk = 21
     }
@@ -19,7 +18,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    kotlinOptions { jvmTarget = "1.8" }
 }
 
 dependencies {
