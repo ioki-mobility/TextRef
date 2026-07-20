@@ -1,6 +1,6 @@
 [versions]
 composeVersion = "1.11.4"
-kotlinVersion = "2.3.10"
+kotlinVersion = "2.4.10"
 
 [libraries]
 android-annotation = "androidx.annotation:annotation:1.9.1"
