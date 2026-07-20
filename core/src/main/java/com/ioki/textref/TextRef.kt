@@ -1,6 +1,7 @@
 package com.ioki.textref
 
 import android.content.Context
+import android.content.res.Resources
 import android.os.Parcel
 import android.os.ParcelFormatException
 import android.os.Parcelable
@@ -26,30 +27,40 @@ class TextRef private constructor(
      * @param context The context used to resolve the string if created from a [StringRes] ID
      * @return A String, formatted with any args passed on creation
      */
-    fun resolve(context: Context): String {
-        val args = processArgs(context)
+    fun resolve(context: Context): String = resolve(context.resources)
+
+    /**
+     * Resolves the contents of the TextRef to a [String].
+     *
+     * Any format args passed on creation will be used to format the string.
+     *
+     * @param resources The resources used to resolve string and plurals resource IDs
+     * @return A String, formatted with any args passed on creation
+     */
+    fun resolve(resources: Resources): String {
+        val args = processArgs(resources)
         return when {
             value is String && args.isEmpty() -> value
             value is String -> value.format(*args)
-            value is Int && args.isEmpty() -> context.getString(value)
-            value is Int -> context.getString(value, *args)
+            value is Int && args.isEmpty() -> resources.getString(value)
+            value is Int -> resources.getString(value, *args)
             value is Pair<*, *> && args.isEmpty() -> {
                 val id = value.first as Int
                 val quantity = value.second as Int
-                context.resources.getQuantityString(id, quantity)
+                resources.getQuantityString(id, quantity)
             }
             value is Pair<*, *> -> {
                 val id = value.first as Int
                 val quantity = value.second as Int
-                context.resources.getQuantityString(id, quantity, *args)
+                resources.getQuantityString(id, quantity, *args)
             }
             else -> error("Unsupported type: ${value.javaClass.name}")
         }
     }
 
-    private fun processArgs(context: Context): Array<Any> =
+    private fun processArgs(resources: Resources): Array<Any> =
         args.map {
-            if (it is TextRef) it.resolve(context)
+            if (it is TextRef) it.resolve(resources)
             else it
         }.toTypedArray()
 
