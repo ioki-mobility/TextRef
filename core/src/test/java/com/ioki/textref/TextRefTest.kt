@@ -43,6 +43,7 @@ class TextRefTest {
     private val formattedIdWithIntArg = "biz $intArg"
     private val formattedIdWithStringArg = "biz bar"
     private val formattedIdWithTwoArgs = "biz $intArg bar"
+    private val formattedIdWithTextRefArg = "biz $formattedIdWithoutArg"
 
     private val formattedPluralWithoutArg = "boz"
     private val formattedPluralWithIntArg = "boz $intArg"
@@ -52,10 +53,11 @@ class TextRefTest {
     @Before
     fun setUp() {
         `when`(mockContext.resources).thenReturn(mockResources)
-        `when`(mockContext.getString(idWithoutArg)).thenReturn(formattedIdWithoutArg)
-        `when`(mockContext.getString(idWithIntArg, intArg)).thenReturn(formattedIdWithIntArg)
-        `when`(mockContext.getString(idWithStringArg, stringArg)).thenReturn(formattedIdWithStringArg)
-        `when`(mockContext.getString(idWithTwoArgs, intArg, stringArg)).thenReturn(formattedIdWithTwoArgs)
+        `when`(mockResources.getString(idWithoutArg)).thenReturn(formattedIdWithoutArg)
+        `when`(mockResources.getString(idWithIntArg, intArg)).thenReturn(formattedIdWithIntArg)
+        `when`(mockResources.getString(idWithStringArg, stringArg)).thenReturn(formattedIdWithStringArg)
+        `when`(mockResources.getString(idWithStringArg, formattedIdWithoutArg)).thenReturn(formattedIdWithTextRefArg)
+        `when`(mockResources.getString(idWithTwoArgs, intArg, stringArg)).thenReturn(formattedIdWithTwoArgs)
         `when`(mockResources.getQuantityString(idWithoutArg, quantity)).thenReturn(formattedPluralWithoutArg)
         `when`(mockResources.getQuantityString(idWithIntArg, quantity, intArg)).thenReturn(formattedPluralWithIntArg)
         `when`(mockResources.getQuantityString(idWithStringArg, quantity, stringArg)).thenReturn(
@@ -88,6 +90,13 @@ class TextRefTest {
     }
 
     @Test
+    fun resolve_createdWithStringResAndResources_resultIsCorrect() {
+        val result = TextRef.stringRes(idWithoutArg).resolve(mockResources)
+
+        assertThat(result).isEqualTo(formattedIdWithoutArg)
+    }
+
+    @Test
     fun createdWithNullStringRes_resultIsEmptyTextRef() {
         val result = TextRef.stringRes(null)
 
@@ -97,6 +106,13 @@ class TextRefTest {
     @Test
     fun resolve_createdWithPluralsRes_resultIsCorrect() {
         val result = TextRef.pluralsRes(idWithoutArg, quantity).resolve(mockContext)
+
+        assertThat(result).isEqualTo(formattedPluralWithoutArg)
+    }
+
+    @Test
+    fun resolve_createdWithPluralsResAndResources_resultIsCorrect() {
+        val result = TextRef.pluralsRes(idWithoutArg, quantity).resolve(mockResources)
 
         assertThat(result).isEqualTo(formattedPluralWithoutArg)
     }
@@ -155,6 +171,13 @@ class TextRefTest {
         val result = TextRef.stringRes(idWithStringArg, textRefArg).resolve(mockContext)
 
         assertThat(result).isEqualTo(formattedIdWithStringArg)
+    }
+
+    @Test
+    fun resolve_createdWithStringResAndTextRefArgAndResources_resultIsCorrect() {
+        val result = TextRef.stringRes(idWithStringArg, TextRef.stringRes(idWithoutArg)).resolve(mockResources)
+
+        assertThat(result).isEqualTo(formattedIdWithTextRefArg)
     }
 
     @Test
