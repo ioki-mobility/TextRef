@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.2.0
+
+* Support for using `Resources` instead of `Context` to resolve
+* A lot of dependency updates
+
+Diff: [`3.1.0...3.2.0`](https://github.com/ioki-mobility/TextRef/compare/3.1.0...3.2.0)
+
 ## 3.1.0
 
 * New maven repository for snapshot versions
