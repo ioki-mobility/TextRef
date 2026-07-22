@@ -5,7 +5,7 @@ plugins {
 
 allprojects {
     group = "com.ioki.textref"
-    version = "3.2.0"
+    version = "3.3.0-SNAPSHOT"
 }
 
 nmcpAggregation {
